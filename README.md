@@ -77,4 +77,86 @@ var init = jQuery.fn.init = function( selector, context, root ) {
 //让新创建的对象指向的原型对象与jQuery的原型对象一样
 init.prototype = jQuery.fn;
 ```
+## Sizzle库的引入
+jQuery库内还引入了另一个函数库，[Sizzle](https://github.com/jquery/sizzle/wiki)
+
+`Sizzle`是一个纯JavaScrip的CSS选择器引擎，jQuery同样用一个`IIFE`调用
+```javascript
+var Sizzle =( function( window ) {
+   //...
+} )( window );//立即调用Sizzle函数表达式，并推出执行栈
+```
+## 链式调用函数方法
+
+链式调用是什么，很容易理解，多个点运算符可同时使用来调用函数,使用方法：
+
+```javascript
+$('text').setStyle('color', 'red').show();
+```
+jQuery能够链式调用的原因是函数返回值为`this`,指向原本的对象，即执行时调用的对象。
+```javascript
+jQuery.fn.extend({
+	addClass: function(){
+		// ...
+		return this;
+	},
+	removeClass: function(){
+		// ...
+		return this;
+	},
+	toggleClass: function(){
+		// ...
+		return this;
+	},
+});
+```
+
+## 防冲突函数
+
+使用方法：
+
+```
+<script>
+	var $ = '我不是jQuery';
+</script>
+<script src="./jquery-3.5.1.js">
+</script>
+<script>
+	$.noConflict();
+	console.log($); // 我不是jQuery
+</script>
+```
+
+jQuery的防冲突函数：
+
+```javascript
+var
+
+	//存储原来的jQuery
+	_jQuery = window.jQuery,
+
+	//存储原来的$
+	_$ = window.$;
+
+jQuery.noConflict = function( deep ) {
+	//你可以用noConflict方法避免变量冲突
+	if ( window.$ === jQuery ) {
+		//如果存在的jQuery就是新创建的jQuery对象，忽略
+		window.$ = _$;
+	}
+
+	if ( deep && window.jQuery === jQuery ) {
+		window.jQuery = _jQuery;
+	}
+
+	//如果不是，jQuery在新的执行环境中创建
+	return jQuery;
+};
+```
+
+#JS类库
+
+仿照`jQuery`的整体结构写的一个小的函数库`Greetr`
+
+主要特性: `IIFE`、无`new`构造、链式调用
 
