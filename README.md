@@ -154,9 +154,9 @@ jQuery.noConflict = function( deep ) {
 };
 ```
 
-#JS类库
+# JS类库
 
-仿照`jQuery`的整体结构写的一个小的函数库`Greetr`
+仿照`jQuery`的整体结构写的一个小的函数库`Greetr`,代码在Greetr文件夹中
 
 主要特性: `IIFE`、无`new`构造、链式调用
 
