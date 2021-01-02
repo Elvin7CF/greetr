@@ -2,7 +2,10 @@
 
 > 看完了Udemy上的课程[JavaScript: Understanding the Weird Part](https://www.udemy.com/course/understand-javascript/)，写一下关于jQuery部分的笔记
 
->jQuery的版本为 `v3.5.1`
+>greetr是仿照`jQuery`的整体结构写的一个小的函数库`Greetr`,代码在Greetr文件夹中
+
+
+>jQuery的版本  `v3.5.1`
 ## IIEF(立即调用函数表达式）
 
 ```javascript
@@ -154,9 +157,5 @@ jQuery.noConflict = function( deep ) {
 };
 ```
 
-# JS类库
 
-仿照`jQuery`的整体结构写的一个小的函数库`Greetr`,代码在Greetr文件夹中
-
-主要特性: `IIFE`、无`new`构造、链式调用
 
